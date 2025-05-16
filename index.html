@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ProteinPicks</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <!-- First Page -->
+    <div id="search-section" class="search-section">
+      <h1>Find High-Protein Chinese Dishes</h1>
+      <input type="text" placeholder="Search Chinese dishes..." class="search-bar" />
+      <button class="search-button" onclick="showResults()">Search</button>
+    </div>
+
+    <!-- Second Page (Results) -->
+    <div id="results-section">
+      <span class="back-link" onclick="goBack()">← Back to search</span>
+      <h2>Here are the top 3 Chinese food by proteins amount</h2>
+      <p class="subtext">Swipe through our recommendations for high-protein hawker dishes</p>
+      <div id="cards-container"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

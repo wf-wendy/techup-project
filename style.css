@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f7fafd;
+  color: #0d1b2a;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+h1, h2 {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.subtext {
+  color: #6a6a6a;
+  margin-bottom: 30px;
+}
+
+.search-section {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.search-bar {
+  width: 70%;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 10px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #ececec;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.card-header h3 {
+  margin: 0;
+}
+
+.protein-tag {
+  background: #d4f5dd;
+  color: #267b4f;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.slider-container {
+  margin: 15px 0;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 5px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.protein-coach {
+  background: #f0f4f8;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 0.95em;
+}
+
+#results-section {
+  display: none;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #0d1b2a;
+  text-decoration: none;
+  cursor: pointer;
+}
+
