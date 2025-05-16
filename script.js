@@ -97,3 +97,57 @@ function goBack() {
   document.getElementById("results-section").style.display = "none";
 }
 
+
+
+// for 1st page search behaviour
+
+// Call this once DOM is fully loaded
+document.addEventListener("DOMContentLoaded", initializeProteinFormHandlers);
+
+function initializeProteinFormHandlers () {
+  alert ("into initialise form handler");
+
+  const radioButtons = document.querySelectorAll("input[name='choice']");
+  const countSelect = document.getElementById("countSelect");
+  const cuisineSelect = document.getElementById("cuisineSelect");
+
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      const isCustom = document.querySelector("input[value='custom']").checked;
+      countSelect.disabled = !isCustom;
+      cuisineSelect.disabled = !isCustom;
+    });
+  });
+}
+
+// Function triggered by button click
+function submitForm (event) {
+    alert("submit button pressed");
+    alert("enter listener");
+
+    //prevent form submission if inside form
+    event.preventDefault();
+
+    const choice = document.querySelector("input[name='choice']:checked").value;
+    const countSelect = document.getElementById("countSelect");
+    const cuisineSelect = document.getElementById("cuisineSelect");
+
+    if (choice === "random") {
+      //alert("Suggesting a random high-protein hawker dish for you...");
+      showResults();
+    } else {
+      const count = countSelect.value;
+      const cuisine = cuisineSelect.value;
+      alert(`Finding ${count} ${cuisine} dishes sorted by protein for you...`);
+    }
+    
+    alert("exit listener");
+}
+
+
+function resetForm() {
+    alert("clear button pressed");
+    document.getElementById("proteinForm").reset();
+    document.getElementById("countSelect").disabled;
+    document.getElementById("countSelect").cuisineSelect.disabled;
+}

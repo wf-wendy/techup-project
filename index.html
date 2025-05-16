@@ -1,20 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ProteinPicks</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <div class="container">
-    <!-- First Page -->
+    <!-- First Page (Search) -->
+    <div id="search-section" class="search-section">
+    <h1 class="title">ProteinPicks</h1>
+    <p class="subtitle">Helping busy professionals find protein-packed hawker meals</p>
+
+    <div class="card">
+        <h2>What should I have at the hawker today?</h2>
+        <form id="proteinForm">
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="choice" value="random" checked />
+                    I have no idea, please suggest 3 choices.
+                </label>
+                <label>
+                    <input type="radio" name="choice" value="custom" />
+                    Find me 
+                    <select id="countSelect" disabled>
+                        <option value="3" selected>3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <select id="cuisineSelect" disabled>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Malay">Malay</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Western">Western</option>
+                    </select>
+                    food sorted by protein
+                </label>
+            </div>
+            
+            <button class="search-button" onclick="resetForm()">Clear</button>    
+            <!--button class="search-button" type="submit">Find My Protein</button-->
+            <button class="search-button" onclick="submitForm(event)">Find My Protein</button>
+        </form>
+    </div>
+    </div>
+
+    <!-- 1st page from the combined codes 
     <div id="search-section" class="search-section">
       <h1>Find High-Protein Chinese Dishes</h1>
       <input type="text" placeholder="Search Chinese dishes..." class="search-bar" />
       <button class="search-button" onclick="showResults()">Search</button>
     </div>
+    -->
 
     <!-- Second Page (Results) -->
     <div id="results-section">
