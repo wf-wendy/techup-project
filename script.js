@@ -5,21 +5,21 @@ const dishes = [
     cost: 6.00,
     protein: 23,
     cuisine: "Chinese",
-    image: "", // Replace with actual image path if needed
+    image: "images/hainanese_beef_noodles_soup.gif", // relative path
   },
   {
     name: "Chicken Rice",
     cost: 5.00,
     protein: 25,
     cuisine: "Chinese",
-    image: "", // Replace with actual image path if needed
+    image: "images/chicken_rice.gif", 
   },
   {
     name: "Wantan Mee (Dry)",
     cost: 4.50,
     protein: 19,
     cuisine: "Chinese",
-    image: "", // Replace with actual image path if needed
+    image: "images/wanton_mee.gif", 
   },
   {
     name: "Fish & Chips",
