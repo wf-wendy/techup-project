@@ -37,50 +37,112 @@ const dishes = [
   },
 ];
 
-//Define variables
+// Define variables
 const targetProtein = 30;
 
-// 2nd page - Results logic
+// Initialisation, Call this once DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+    initializeProteinFormHandlers();
+    resetForm(); // ensure form is clean on initial load
+});
+
+// Form Handling
+function initializeProteinFormHandlers () {
+    alert ("into initialise form handler");
+    const radioButtons = document.querySelectorAll("input[name='choice']");
+    const countSelect = document.getElementById("countSelect");
+    const cuisineSelect = document.getElementById("cuisineSelect");
+
+    radioButtons.forEach((radio) => {
+        radio.addEventListener("change", () => {
+        const isCustom = document.querySelector("input[value='custom']").checked;
+        countSelect.disabled = !isCustom;
+        cuisineSelect.disabled = !isCustom;
+        });
+    });
+}
+
+function resetForm() {
+    alert("into reset form");
+    const form = document.getElementById("proteinForm");
+    form.reset();
+
+    document.querySelector("input[value='random']").checked = true;
+    document.getElementById("countSelect").disabled = true;
+    document.getElementById("cuisineSelect").disabled = true;
+}
+
+// Submission + Result Display
+function submitForm (event) {
+    //alert("submit button pressed");
+    //alert("enter listener");
+
+    //Prevent form submission if inside form
+    event.preventDefault();
+
+    const choice = document.querySelector("input[name='choice']:checked").value;
+    const countSelect = document.getElementById("countSelect");
+    const cuisineSelect = document.getElementById("cuisineSelect");
+
+    if (choice === "random") {
+        alert("Suggesting 3 random high-protein hawker dish for you...");
+        showResults("All",3,choice);
+    } else {
+        const count = countSelect.value;
+        const cuisine = cuisineSelect.value;
+        alert(`Finding ${count} ${cuisine} dishes sorted by protein for you...`);
+        showResults(cuisine,count,choice);
+    }    
+    //alert("exit listener");
+}
+
+// Results page
 function showResults(cuisine, count, choice) {
-  alert("enter showResults, cuisine: " + cuisine + " count: " + count + " choice: " + choice);
+    alert("enter showResults, cuisine: " + cuisine + " count: " + count + " choice: " + choice);
 
-  document.getElementById("search-section").style.display = "none";
-  document.getElementById("results-section").style.display = "block";
+    document.getElementById("search-section").style.display = "none";
+    document.getElementById("results-section").style.display = "block";
 
-  const container = document.getElementById("cards-container");
-  container.innerHTML = "";
+    const heading = document.getElementById("results-heading");
+    const container = document.getElementById("cards-container");
+    container.innerHTML = "";
 
-  if (choice === "random") {
-    // Get random dishes from the full list
-    const shuffled = dishes.sort(() => 0.5 - Math.random());
-    filteredDishes = shuffled.slice(0, count);
-  } else {
-    // Filter by cuisine and sort by protein
-    filteredDishes = dishes
-      //.filter(d => cuisine === "All" || d.cuisine === cuisine)
-      .filter(d => d.cuisine === cuisine)
-      .sort((a, b) => b.protein - a.protein)
-      .slice(0, count);
-  }
+    let filteredDishes;
 
-  // Filter by cuisine (if not "All") and sort by protein descending
-  //const filteredDishes = dishes
-  //  .filter(d => cuisine === "All" || d.cuisine === cuisine)
-  //  .sort((a, b) => b.protein - a.protein)
-  //  .slice(0, count);
-  
-  //Display the dishes
-  //dishes.forEach((dish, index) => {
-  filteredDishes.forEach((dish, index) => {
+    if (choice === "random") {
+        heading.textContent = `Here are ${count} random high-protein hawker dishes`;    
+        // Get random dishes from the full list, sort first by protein, then shuffle, then slice
+        const sortedByProtein = [...dishes].sort((a, b) => b.protein - a.protein);
+        const shuffled = sortedByProtein.sort(() => 0.5 - Math.random());
+        filteredDishes = shuffled.slice(0, count);
+    } else {
+        heading.textContent = `Here are the top ${count} ${cuisine} food by protein amount`;
+        // Filter by cuisine and sort by protein
+        filteredDishes = dishes
+        .filter(d => d.cuisine === cuisine)
+        .sort((a, b) => b.protein - a.protein)
+        .slice(0, count);
+    }
+
+    renderDishCards(filteredDishes);
+}
+
+// Card Rendering
+function renderDishCards (dishes){
+    const container = document.getElementById("cards-container");
+
+    //Display the dishes
+    dishes.forEach((dish, index) => {
     alert (dish.name + "," + index);
 
     const card = document.createElement("div");
     card.className = "card";
 
-    const imageHTML = dish.image ? `<img src="${dish.image}" alt="${dish.name}">` :
-      `<div style="width:100%; height:250px; background:#e2e8f0; border-radius:10px; display:flex; align-items:center; justify-content:center;">
-        <span style="color:#bbb;">[ Image Placeholder ]</span>
-      </div>`;
+    const imageHTML = dish.image 
+        ? `<img src="${dish.image}" alt="${dish.name}">` 
+        : `<div style="width:100%; height:250px; background:#e2e8f0; border-radius:10px; display:flex; align-items:center; justify-content:center;">
+            <span style="color:#bbb;">[ Image Placeholder ]</span>
+           </div>`;
 
     card.innerHTML = `
       ${imageHTML}
@@ -120,77 +182,28 @@ function showResults(cuisine, count, choice) {
   });
 }
 
+// Coach Message Generator
 function getCoachMessage(protein) {
-  if (protein >= targetProtein) {
-    return `✅ You're getting enough protein from this portion size. Great job!`;
-  } else {
-    const needed = targetProtein - protein;
-    return `
-      You need about <strong>${needed}g</strong> more protein to reach your target of ${targetProtein}g.<br>
-      Try increasing your portion size or consider adding:
-      <ul>
-        <li>Hard Boiled Egg</li>
-        <li>Soy Milk</li>
-        <li>Tofu Side Dish</li>
-      </ul>
-    `;
-  }
+    if (protein >= targetProtein) {
+        return `✅ You're getting enough protein from this portion size. Great job!`;
+    } else {
+        const needed = targetProtein - protein;
+        return `
+            You need about <strong>${needed}g</strong> more protein to reach your target of ${targetProtein}g.<br>
+            Try increasing your portion size or consider adding:
+            <ul>
+                <li>Hard Boiled Egg</li>
+                <li>Soy Milk</li>
+                <li>Tofu Side Dish</li>
+            </ul>
+        `;
+    }
 }
 
+// Back/Reset Navigation
 function goBack() {
   document.getElementById("search-section").style.display = "block";
   document.getElementById("results-section").style.display = "none";
-  initializeProteinFormHandlers ();
+  resetForm();
 }
 
-// 1st page - Search logic
-
-// Call this once DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initializeProteinFormHandlers);
-
-function initializeProteinFormHandlers () {
-  //alert ("into initialise form handler");
-  const radioButtons = document.querySelectorAll("input[name='choice']");
-  const countSelect = document.getElementById("countSelect");
-  const cuisineSelect = document.getElementById("cuisineSelect");
-
-  radioButtons.forEach((radio) => {
-    radio.addEventListener("change", () => {
-      const isCustom = document.querySelector("input[value='custom']").checked;
-      countSelect.disabled = !isCustom;
-      cuisineSelect.disabled = !isCustom;
-    });
-  });
-}
-
-// Function triggered by Find My Protein button
-function submitForm (event) {
-  //alert("submit button pressed");
-  //alert("enter listener");
-
-  //Prevent form submission if inside form
-  event.preventDefault();
-
-  const choice = document.querySelector("input[name='choice']:checked").value;
-  const countSelect = document.getElementById("countSelect");
-  const cuisineSelect = document.getElementById("cuisineSelect");
-
-  if (choice === "random") {
-    alert("Suggesting 3 random high-protein hawker dish for you...");
-    showResults("All",3,choice);
-    } else {
-    const count = countSelect.value;
-    const cuisine = cuisineSelect.value;
-    alert(`Finding ${count} ${cuisine} dishes sorted by protein for you...`);
-    showResults(cuisine,count,choice);
-  }
-    
-  //alert("exit listener");
-}
-
-//function resetForm() {
-    //alert("clear button pressed");
-    //document.getElementById("proteinForm").reset();
-    //document.getElementById("countSelect").disabled;
-    //document.getElementById("countSelect").cuisineSelect.disabled;
-//}

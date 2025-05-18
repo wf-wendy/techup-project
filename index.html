@@ -45,25 +45,17 @@
             
             <br/><br/>
 
-            <button class="search-button" onclick="goBack()">Clear</button>    
-            <!--button class="search-button" type="submit">Find My Protein</button-->
-            <button class="search-button" onclick="submitForm(event)">Find My Protein</button>
+            <button type="button" class="search-button" onclick="goBack()">Clear</button>    
+            <button type="button" class="search-button" onclick="submitForm(event)">Find My Protein</button>
         </form>
     </div>
     </div>
 
-    <!-- 1st page from the combined codes 
-    <div id="search-section" class="search-section">
-      <h1>Find High-Protein Chinese Dishes</h1>
-      <input type="text" placeholder="Search Chinese dishes..." class="search-bar" />
-      <button class="search-button" onclick="showResults()">Search</button>
-    </div>
-    -->
-
     <!-- Second Page (Results) -->
     <div id="results-section">
       <span class="back-link" onclick="goBack()">← Back to search</span>
-      <h2>Here are the top 3 Chinese food by proteins amount</h2>
+      <!--h2>Here are the top 3 Chinese food by proteins amount</h2-->
+      <h2 id="results-heading"></h2>
       <p class="subtext">Swipe through our recommendations for high-protein hawker dishes</p>
       <div id="cards-container"></div>
     </div>
