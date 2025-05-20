@@ -5,37 +5,117 @@ const dishes = [
     cost: 6.00,
     protein: 23,
     cuisine: "Chinese",
-    image: "images/hainanese_beef_noodles_soup.gif", // relative path
+    image: "images/hainanese_beef_noodles_C.gif", // relative path
+    supplements: ["Beef Balls (~5g)"]
   },
   {
     name: "Chicken Rice",
     cost: 5.00,
     protein: 25,
     cuisine: "Chinese",
-    image: "images/chicken_rice.gif", 
+    image: "images/chicken_rice_C.gif", 
+    supplements: ["Egg (~7g)", "Tofu (~8g)"]
   },
   {
     name: "Wantan Mee (Dry)",
     cost: 4.50,
     protein: 19,
     cuisine: "Chinese",
-    image: "images/wanton_mee.gif", 
+    image: "images/wanton_mee_C.gif",
+    supplements: []
   },
   {
-    name: "Fish & Chips",
+    name: "Grilled Fish",
     cost: 6.00,
     protein: 22,
     cuisine: "Western",
-    image: "",
+    image: "images/grilled_fish_W.jpg",
+    supplements: ["Egg (~7g)"]
   },
   {
     name: "Chicken Biryani",
     cost: 6.50,
     protein: 20,
-    cuisine: "Indian",
+    cuisine: "Malay",
     image: "",
+    supplements: ["Egg (~7g)"]
   },
+  {
+    name: "Hotplate Beef with Rice",
+    cost: 7.00,
+    protein: 25,
+    cuisine: "Jap",
+    image: "images/hotplate_beef_J.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Sirloin Steak",
+    cost: 15.00,
+    protein: 28,
+    cuisine: "Western",
+    image: "images/sirloin_steak_W.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Fish Noodles Soup",
+    cost: 4.00,
+    protein: 18,
+    cuisine: "Chinese",
+    image: "images/fish_beehoon_C.jpg",
+    supplements: ["A cup of zero sugar soymilk (~7g)"]
+  },
+  {
+    name: "Beef Hor Fun",
+    cost: 7.00,
+    protein: 22,
+    cuisine: "Chinese",
+    image: "images/beef_horfun_C.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Kway Chap with Braised Duck",
+    cost: 8.00,
+    protein: 20,
+    cuisine: "Chinese",
+    image: "images/duck_kway_C.jpg",
+    supplements: ["Egg (~7g)", "Tofu (~8g)"]
+  },
+  {
+    name: "Pork Basil with Rice",
+    cost: 7.00,
+    protein: 30,
+    cuisine: "Thai",
+    image: "images/pork_basil_T.jpg",
+    supplements: []
+  },
+  {
+    name: "Ban Mian (Dry)",
+    cost: 5.50,
+    protein: 25,
+    cuisine: "Chinese",
+    image: "images/ban_mian_C.jpg",
+    supplements: []
+  },
+  {
+    name: "Ayam Penyet",
+    cost: 8.50,
+    protein: 30,
+    cuisine: "Malay",
+    image: "images/ayam_penyet_M.jpg",
+    supplements: []
+  },
+  {
+    name: "Double Egg Prata",
+    cost: 5.00,
+    protein: 15,
+    cuisine: "Malay",
+    image: "images/egg_prata_M.jpg",
+    supplements: ["Chicken Leg (~20g)", "Batang Fish (~18g)"]
+  }
 ];
+
+
+// -------------------------
 
 // Define variables
 const targetProtein = 30;
@@ -116,7 +196,7 @@ function showResults(cuisine, count, choice) {
         const shuffled = sortedByProtein.sort(() => 0.5 - Math.random());
         filteredDishes = shuffled.slice(0, count);
     } else {
-        heading.textContent = `Here are the top ${count} ${cuisine} food by protein amount`;
+        heading.textContent = `Here are the ${count} ${cuisine} food by protein amount`;
         // Filter by cuisine and sort by protein
         filteredDishes = dishes
         .filter(d => d.cuisine === cuisine)
@@ -154,17 +234,6 @@ function renderDishCards (dishes){
       </div>
       <div class="protein-tag">Estimated: <span id="protein-${index}">${dish.protein}</span>g protein</div>
 
-      <!-- initial code for the slider -->
-      <!--div class="slider-container">
-        <label>Adjust Protein Portion Size</label>
-        <input type="range" min="0.5" max="2" step="0.1" value="1" class="slider" id="slider-${index}">
-        <div class="slider-labels">
-          <span>Half</span>
-          <span>Regular</span>
-          <span>Double</span>
-        </div>
-      </div-->
-
       <div class="slider-container">
         <label>Adjust Protein Portion Size</label>
         <input type="range" min="0" max="4" step="1" value="2" class="slider" id="slider-${index}">
@@ -178,7 +247,7 @@ function renderDishCards (dishes){
       </div>
 
       <div class="protein-coach" id="coach-${index}">
-        ${getCoachMessage(dish.protein)}
+        ${getCoachMessage(dish.protein, dish)}
       </div>
     `;
 
@@ -188,13 +257,6 @@ function renderDishCards (dishes){
     const proteinSpan = card.querySelector(`#protein-${index}`);
     const coach = card.querySelector(`#coach-${index}`);
 
-    // initial code for the slider
-    // slider.addEventListener("input", () => {
-    //   const multiplier = parseFloat(slider.value);
-    //   const updatedProtein = Math.round(dish.protein * multiplier);
-    //   proteinSpan.textContent = updatedProtein;
-    //   coach.innerHTML = getCoachMessage(updatedProtein);
-    // });
     slider.addEventListener("input", () => {
       const position = parseInt(slider.value);
       
@@ -204,25 +266,23 @@ function renderDishCards (dishes){
 
       const updatedProtein = Math.round(dish.protein * multiplier);
       proteinSpan.textContent = updatedProtein;
-      coach.innerHTML = getCoachMessage(updatedProtein);
+      coach.innerHTML = getCoachMessage(updatedProtein, dish);
     });
   });
 }
 
 // Coach Message Generator
-function getCoachMessage(protein) {
+function getCoachMessage(protein, dish) {
     if (protein >= targetProtein) {
         return `✅ You're getting enough protein from this portion size. Great job!`;
     } else {
         const needed = targetProtein - protein;
+        const supplementList = dish.supplements?.map(item => `<li>${item}</li>`).join("") || "";
+
         return `
-            You need about <strong>${needed}g</strong> more protein to reach your target of ${targetProtein}g.<br>
-            Try increasing your portion size or consider adding:
-            <ul>
-                <li>Hard Boiled Egg</li>
-                <li>Soy Milk</li>
-                <li>Tofu Side Dish</li>
-            </ul>
+            You need about <strong>${needed}g</strong> more protein to reach your target of ${targetProtein}g.<br><br>
+            Consider adding:
+            <ul>${supplementList}</ul>
         `;
     }
 }
