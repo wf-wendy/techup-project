@@ -147,17 +147,32 @@ function renderDishCards (dishes){
     card.innerHTML = `
       ${imageHTML}
       <div class="card-header">
-        <h3>${dish.name}</h3>
-        <strong>$${dish.cost.toFixed(2)}</strong>
+        <div class="card-title">
+          <h3>${dish.name}</h3>
+          <strong>$${dish.cost.toFixed(2)}</strong>
+        </div>
       </div>
-      <div class="protein-tag"><span id="protein-${index}">${dish.protein}</span>g protein</div>
+      <div class="protein-tag">Estimated: <span id="protein-${index}">${dish.protein}</span>g protein</div>
 
-      <div class="slider-container">
-        <label>Adjust Portion Size</label>
+      <!-- initial code for the slider -->
+      <!--div class="slider-container">
+        <label>Adjust Protein Portion Size</label>
         <input type="range" min="0.5" max="2" step="0.1" value="1" class="slider" id="slider-${index}">
         <div class="slider-labels">
           <span>Half</span>
           <span>Regular</span>
+          <span>Double</span>
+        </div>
+      </div-->
+
+      <div class="slider-container">
+        <label>Adjust Protein Portion Size</label>
+        <input type="range" min="0" max="4" step="1" value="2" class="slider" id="slider-${index}">
+        <div class="slider-labels">
+          <span>0</span>
+          <span>-½ portion</span>
+          <span>Regular</span>
+          <span>+½ portion</span>
           <span>Double</span>
         </div>
       </div>
@@ -173,8 +188,20 @@ function renderDishCards (dishes){
     const proteinSpan = card.querySelector(`#protein-${index}`);
     const coach = card.querySelector(`#coach-${index}`);
 
+    // initial code for the slider
+    // slider.addEventListener("input", () => {
+    //   const multiplier = parseFloat(slider.value);
+    //   const updatedProtein = Math.round(dish.protein * multiplier);
+    //   proteinSpan.textContent = updatedProtein;
+    //   coach.innerHTML = getCoachMessage(updatedProtein);
+    // });
     slider.addEventListener("input", () => {
-      const multiplier = parseFloat(slider.value);
+      const position = parseInt(slider.value);
+      
+      // Map slider position to multiplier
+      const multipliers = [0, 0.5, 1, 1.5, 2];
+      const multiplier = multipliers[position];
+
       const updatedProtein = Math.round(dish.protein * multiplier);
       proteinSpan.textContent = updatedProtein;
       coach.innerHTML = getCoachMessage(updatedProtein);

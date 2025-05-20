@@ -73,17 +73,46 @@ h1, h2 {
   background: #ececec;
   display: block;
   margin: 0 auto; /* center the image */
-} */
+} 
 
-.card-header {
+/* the initial code for card header w/o card-title as child */
+/*.card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 15px 0;
+} */
+
+.card-header {
+  margin: 15px 0;
 }
 
-.card-header h3 {
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* the initial code for card header w/o card-title as child */
+/* .card-header h3 {
   margin: 0;
+} */
+
+.card-title h3 {
+  margin: 0;
+  font-size: 1.2em;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-title strong {
+  margin-left: 15px;
+  font-size: 1.1em;
+  white-space: nowrap;
+  color: #333;
 }
 
 .protein-tag {
