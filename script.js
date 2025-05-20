@@ -26,7 +26,7 @@ const dishes = [
   },
   {
     name: "Grilled Fish",
-    cost: 6.00,
+    cost: 7.50,
     protein: 22,
     cuisine: "Western",
     image: "images/grilled_fish_W.jpg",
@@ -37,12 +37,12 @@ const dishes = [
     cost: 6.50,
     protein: 20,
     cuisine: "Malay",
-    image: "",
+    image: "images/chix_biryani_M.jpg",
     supplements: ["Egg (~7g)"]
   },
   {
-    name: "Hotplate Beef with Rice",
-    cost: 7.00,
+    name: "Beef Hotplate with Rice",
+    cost: 7.50,
     protein: 25,
     cuisine: "Jap",
     image: "images/hotplate_beef_J.jpg",
@@ -111,6 +111,78 @@ const dishes = [
     cuisine: "Malay",
     image: "images/egg_prata_M.jpg",
     supplements: ["Chicken Leg (~20g)", "Batang Fish (~18g)"]
+  },
+  {
+    name: "Ginseng Chicken with Rice",
+    cost: 10.00,
+    protein: 30,
+    cuisine: "Jap",
+    image: "images/ginseng_chix_J.jpg",
+    supplements: []
+  },
+  {
+    name: "Chicken Chop",
+    cost: 8.50,
+    protein: 25,
+    cuisine: "Western",
+    image: "images/chicken_chop_W.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Carrot Cake (White)",
+    cost: 4.00,
+    protein: 11,
+    cuisine: "Chinese",
+    image: "images/carrot_cake_C.jpg",
+    supplements: ["Egg (~7g)",'A cup of zero sugar soymilk (~7g)']
+  },
+  {
+    name: "Carrot Cake (White)",
+    cost: 4.00,
+    protein: 11,
+    cuisine: "Chinese",
+    image: "images/carrot_cake_C.jpg",
+    supplements: ["Egg (~7g)","A cup of zero sugar soymilk (~7g)"]
+  },
+  {
+    name: "Prawn Noodles",
+    cost: 9.00,
+    protein: 19,
+    cuisine: "Chinese",
+    image: "images/prawn_noodles_C.jpg",
+    supplements: []
+  },
+  {
+    name: "Chicken Hotplate with Rice",
+    cost: 6.50,
+    protein: 23,
+    cuisine: "Jap",
+    image: "images/chix_hotplate_J.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Saba Fish with Rice",
+    cost: 6.50,
+    protein: 20,
+    cuisine: "Jap",
+    image: "images/saba_fish_J.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Bibimbap (Basic)",
+    cost: 7.00,
+    protein: 8,
+    cuisine: "Jap",
+    image: "images/bibimbap_J.jpg",
+    supplements: ["Beef Bulgogi (~22g)","Teriyaki Chicken (~22g)","Spicy Pork (~22g)"]
+  },
+  {
+    name: "Salmon Mentai Don",
+    cost: 9.00,
+    protein: 20,
+    cuisine: "Jap",
+    image: "images/salmon_don_J.jpg",
+    supplements: ["Steamed Edamame (~8g)"]
   }
 ];
 
