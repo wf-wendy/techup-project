@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Form Handling
 function initializeProteinFormHandlers () {
-    alert ("into initialise form handler");
+    //alert ("into initialise form handler");
     const radioButtons = document.querySelectorAll("input[name='choice']");
     const countSelect = document.getElementById("countSelect");
     const cuisineSelect = document.getElementById("cuisineSelect");
@@ -215,7 +215,7 @@ function initializeProteinFormHandlers () {
 }
 
 function resetForm() {
-    alert("into reset form");
+    //alert("into reset form");
     const form = document.getElementById("proteinForm");
     form.reset();
 
@@ -229,7 +229,7 @@ function submitForm (event) {
     //alert("submit button pressed");
     //alert("enter listener");
 
-    //Prevent form submission if inside form
+    // Prevent default form submission
     event.preventDefault();
 
     const choice = document.querySelector("input[name='choice']:checked").value;
@@ -237,12 +237,12 @@ function submitForm (event) {
     const cuisineSelect = document.getElementById("cuisineSelect");
 
     if (choice === "random") {
-        alert("Suggesting 3 random high-protein hawker dish for you...");
+        //alert("Suggesting 3 random high-protein hawker dish for you...");
         showResults("All",3,choice);
     } else {
         const count = countSelect.value;
         const cuisine = cuisineSelect.value;
-        alert(`Finding ${count} ${cuisine} dishes sorted by protein for you...`);
+        //alert(`Finding ${count} ${cuisine} dishes sorted by protein for you...`);
         showResults(cuisine,count,choice);
     }    
     //alert("exit listener");
@@ -250,7 +250,8 @@ function submitForm (event) {
 
 // Results page
 function showResults(cuisine, count, choice) {
-    alert("enter showResults, cuisine: " + cuisine + " count: " + count + " choice: " + choice);
+    //alert("enter showResults, cuisine: " + cuisine + " count: " + count + " choice: " + choice);
+    console.log("showResults: ", cuisine, count, choice);
 
     document.getElementById("search-section").style.display = "none";
     document.getElementById("results-section").style.display = "block";
@@ -275,7 +276,8 @@ function showResults(cuisine, count, choice) {
         .sort((a, b) => b.protein - a.protein)
         .slice(0, count);
     }
-
+    
+    console.log("filteredDishes: ", filteredDishes);  
     renderDishCards(filteredDishes);
 }
 
@@ -285,7 +287,7 @@ function renderDishCards (dishes){
 
     //Display the dishes
     dishes.forEach((dish, index) => {
-    alert (dish.name + "," + index);
+    //alert (dish.name + "," + index);
 
     const card = document.createElement("div");
     card.className = "card";
