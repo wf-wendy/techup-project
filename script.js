@@ -265,16 +265,25 @@ function showResults(cuisine, count, choice) {
     if (choice === "random") {
         heading.textContent = `Here are ${count} random high-protein hawker dishes`;    
         // Get random dishes from the full list, sort first by protein, then shuffle, then slice
-        const sortedByProtein = [...dishes].sort((a, b) => b.protein - a.protein);
-        const shuffled = sortedByProtein.sort(() => 0.5 - Math.random());
-        filteredDishes = shuffled.slice(0, count);
+        //const sortedByProtein = [...dishes].sort((a, b) => b.protein - a.protein);
+        //const shuffled = sortedByProtein.sort(() => 0.5 - Math.random());
+        //filteredDishes = shuffled.slice(0, count);
+        // Shuffle, then take count, then sort by protein
+        const shuffled = [...dishes].sort(() => 0.5 - Math.random());
+        filteredDishes = shuffled.slice(0, count).sort((a, b) => b.protein - a.protein);
     } else {
         heading.textContent = `Here are the ${count} ${cuisine} food by protein amount`;
         // Filter by cuisine and sort by protein
+        // filteredDishes = dishes
+        // .filter(d => d.cuisine === cuisine)
+        // .sort((a, b) => b.protein - a.protein)
+        // .slice(0, count);
+        // Filter by cuisine, shuffle, and sort by protein
         filteredDishes = dishes
         .filter(d => d.cuisine === cuisine)
-        .sort((a, b) => b.protein - a.protein)
-        .slice(0, count);
+        .sort(() => 0.5 - Math.random()) // shuffle
+        .slice(0, count)                 // pick random dishes
+        .sort((a, b) => b.protein - a.protein); // sort by protein
     }
     
     console.log("filteredDishes: ", filteredDishes);  
