@@ -18,12 +18,12 @@ h1, h2 {
 
 .subtext {
   color: #6a6a6a;
-  margin-bottom: 30px;
+  margin-bottom: 30px; 
 }
 
 .search-section {
   text-align: center;
-  margin-top: 80px;
+  margin-top: 20px; /* reduce top margin of search-section */
 }
 
 .search-bar {
@@ -168,6 +168,7 @@ footer {
   color: #6a6a6a;
 }
 
+/* This is for the dropdown font, dropdown compact but readable, modern+subtle arrow */
 select {
   font-family: 'Segoe UI', sans-serif;
   font-size: 1em;
@@ -193,3 +194,25 @@ select:disabled {
   color: #aaa;
   cursor: not-allowed;
 }
+
+/* "ProteinPicks" will look bold, modern, and subtly highlighted. */
+.title {
+  font-size: 2.5em;
+  font-weight: 800;
+  color: #183153;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.2em;
+  text-shadow: 0 2px 8px rgba(24,49,83,0.06);
+}
+
+/* The subtitle will have a gentle color accent and spacing for a clean, professional look. */
+.subtitle {
+  font-size: 1.15em;
+  color: #2563eb;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+  margin-bottom: 1.5em;
+  opacity: 0.85;
+}
+
