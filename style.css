@@ -161,3 +161,9 @@ h1, h2 {
   cursor: pointer;
 }
 
+footer {
+  text-align: left;
+  padding: 25px;
+  font-size: 0.7em;
+  color: #6a6a6a;
+}

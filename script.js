@@ -14,7 +14,7 @@ const dishes = [
     protein: 25,
     cuisine: "Chinese",
     image: "images/chicken_rice_C.gif", 
-    supplements: ["Egg (~7g)", "Tofu (~8g)"]
+    supplements: ["Egg (~7g)", "Tau Kwa (~8g)"]
   },
   {
     name: "Wantan Mee (Dry)",
@@ -134,23 +134,15 @@ const dishes = [
     protein: 11,
     cuisine: "Chinese",
     image: "images/carrot_cake_C.jpg",
-    supplements: ["Egg (~7g)",'A cup of zero sugar soymilk (~7g)']
-  },
-  {
-    name: "Carrot Cake (White)",
-    cost: 4.00,
-    protein: 11,
-    cuisine: "Chinese",
-    image: "images/carrot_cake_C.jpg",
     supplements: ["Egg (~7g)","A cup of zero sugar soymilk (~7g)"]
   },
   {
-    name: "Prawn Noodles",
+    name: "Prawn & Pork Ribs Noodles",
     cost: 9.00,
     protein: 19,
     cuisine: "Chinese",
     image: "images/prawn_noodles_C.jpg",
-    supplements: []
+    supplements: ["Egg (~7g)","Greek Yogurt (~10g)"]
   },
   {
     name: "Chicken Hotplate with Rice",
@@ -183,11 +175,35 @@ const dishes = [
     cuisine: "Jap",
     image: "images/salmon_don_J.jpg",
     supplements: ["Steamed Edamame (~8g)"]
+  },
+  {
+    name: "Nasi Lemak with Fried Egg & Anchovies",
+    cost: 4.00,
+    protein: 13,
+    cuisine: "Malay",
+    image: "images/nasi_lemak_M.jpg",
+    supplements: ["Chicken Drumstick (~18g)", "Chicken Wing (~10g)", "Otah (~4g)"]
+  },
+  {
+    name: "Mee Soto",
+    cost: 4.50,
+    protein: 18,
+    cuisine: "Malay",
+    image: "images/mee_soto_M.jpg",
+    supplements: ["Egg (~7g)", "Tau Kwa (~8g)", "Sardines curry puff (~6g)"]
+  },
+  {
+    name: "Gado-Gado",
+    cost: 4.00,
+    protein: 9,
+    cuisine: "Malay",
+    image: "images/gado_gado_M.jpg",
+    supplements: ["Egg (~7g)", "Tau Kwa (~8g)", "Tempeh (~15g)"]
   }
 ];
 
 
-// -------------------------
+// --------------------------------------------------------------------------- //
 
 // Define variables
 const targetProtein = 30;
@@ -251,6 +267,7 @@ function submitForm (event) {
 // Results page
 function showResults(cuisine, count, choice) {
     //alert("enter showResults, cuisine: " + cuisine + " count: " + count + " choice: " + choice);
+    // debug
     console.log("showResults: ", cuisine, count, choice);
 
     document.getElementById("search-section").style.display = "none";
@@ -286,7 +303,9 @@ function showResults(cuisine, count, choice) {
         .sort((a, b) => b.protein - a.protein); // sort by protein
     }
     
+    // debug
     console.log("filteredDishes: ", filteredDishes);  
+
     renderDishCards(filteredDishes);
 }
 
@@ -364,7 +383,7 @@ function getCoachMessage(protein, dish) {
 
         return `
             You need about <strong>${needed}g</strong> more protein to reach your target of ${targetProtein}g.<br><br>
-            Consider adding:
+            You may like to reduce some carbs and consider adding:
             <ul>${supplementList}</ul>
         `;
     }
