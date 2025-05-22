@@ -50,7 +50,7 @@ const dishes = [
   },
   {
     name: "Sirloin Steak",
-    cost: 15.00,
+    cost: 16.00,
     protein: 28,
     cuisine: "Western",
     image: "images/sirloin_steak_W.jpg",
@@ -166,7 +166,7 @@ const dishes = [
     protein: 8,
     cuisine: "Jap",
     image: "images/bibimbap_J.jpg",
-    supplements: ["Beef Bulgogi (~22g)","Teriyaki Chicken (~22g)","Spicy Pork (~22g)"]
+    supplements: ["Beef Bulgogi (~15g)","Teriyaki Chicken (~13g)","Spicy Pork (~10g)"]
   },
   {
     name: "Salmon Mentai Don",
@@ -199,6 +199,70 @@ const dishes = [
     cuisine: "Malay",
     image: "images/gado_gado_M.jpg",
     supplements: ["Egg (~7g)", "Tau Kwa (~8g)", "Tempeh (~15g)"]
+  },
+  {
+    name: "Pad Thai",
+    cost: 5.00,
+    protein: 10,
+    cuisine: "Thai",
+    image: "images/pad_thai_T.jpg",
+    supplements: ["Egg (~7g)", "Tau Kwa (~8g)", "Beef (~10g)", "Chicken (~9g)", "Pork (~5g)"]
+  },
+  {
+    name: "Tom Yum Soup (with Rice / Noodles)",
+    cost: 5.50,
+    protein: 15,
+    cuisine: "Thai",
+    image: "images/tom_yam_T.jpg",
+    supplements: ["Chicken (~9g)", "Pork (~5g)"]
+  },
+  {
+    name: "Thai Green Curry Chicken (with Rice)",
+    cost: 8.50,
+    protein: 22,
+    cuisine: "Thai",
+    image: "images/thai_green_curry_T.jpg",
+    supplements: ["Tau Kwa (~8g)", "Grilled Chicken Skewers (~18g)"]
+  },
+  {
+    name: "Beef Pho",
+    cost: 8.00,
+    protein: 24,
+    cuisine: "Thai",
+    image: "images/beef_pho_T.jpg",
+    supplements: ["Vietnamese Spring Roll (~10g)"]
+  },
+  {
+    name: "Bun Cha (Vietnamese Grilled Pork Noodles)",
+    cost: 9.00,
+    protein: 26,
+    cuisine: "Thai",
+    image: "images/bun_cha_T.jpg",
+    supplements: ["Vietnamese Spring Roll (~10g)"]
+  },
+  {
+    name: "Grilled Salmon",
+    cost: 15.50,
+    protein: 20,
+    cuisine: "Western",
+    image: "images/grilled_salmon_W.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Pork Chop",
+    cost: 8.50,
+    protein: 22,
+    cuisine: "Western",
+    image: "images/pork_chop_W.jpg",
+    supplements: ["Egg (~7g)"]
+  },
+  {
+    name: "Lamb Chop",
+    cost: 13.50,
+    protein: 26,
+    cuisine: "Western",
+    image: "images/lamb_chop_W.jpg",
+    supplements: ["Egg (~7g)"]
   }
 ];
 
